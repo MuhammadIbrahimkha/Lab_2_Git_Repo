@@ -19,5 +19,13 @@ print(f"Free: {free / (1024**3):.2f} GB")
 # Developer B:
 # Add a memory section.
 # On Linux you may read /proc/meminfo.
+print("=== Memory Usage ===")
+
+with open("/proc/meminfo", "r") as f:
+    meminfo = f.readlines()
+
+for line in meminfo:
+    if line.startswith("MemTotal:") or line.startswith("MemAvailable:"):
+        print(line.strip())
 
 print("========================")
